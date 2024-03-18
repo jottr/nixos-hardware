@@ -12,6 +12,7 @@
       apple-macbook-pro-10-1 = import ./apple/macbook-pro/10-1;
       apple-macbook-pro-11-5 = import ./apple/macbook-pro/11-5;
       apple-macbook-pro-12-1 = import ./apple/macbook-pro/12-1;
+      apple-macbook-pro-13-1 = import ./apple/macbook-pro/13-1;
       apple-macbook-pro-14-1 = import ./apple/macbook-pro/14-1;
       apple-t2 = import ./apple/t2;
       asus-battery = import ./asus/battery.nix;
