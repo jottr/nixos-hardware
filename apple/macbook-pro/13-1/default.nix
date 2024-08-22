@@ -34,17 +34,11 @@
     [MacBook(Pro) SPI Keyboards]
     MatchName=*Apple SPI Keyboard*
     AttrKeyboardIntegration=internal
-
-    [MacBookPro Touchbar]
-    MatchBus=usb
-    MatchVendor=0x05AC
-    MatchProduct=0x8600
-    AttrKeyboardIntegration=internal
   '';
 
-  # Wifi, CPU Microcode FW updates 
+  # Wifi, CPU Microcode FW updates
   networking.enableB43Firmware = lib.mkDefault true;
-  hardware = { 
+  hardware = {
     enableRedistributableFirmware = lib.mkDefault true;
     cpu.intel.updateMicrocode = lib.mkDefault true;
   };
@@ -53,13 +47,13 @@
   # Disable d3cold on older NVME controller, only if needed
   # https://github.com/Dunedan/mbp-2016-linux
   #
-  #systemd.services.disable-nvme-d3cold = {
-  #  description = "Disables d3cold on the NVME controller";
-  #  before      = [ "suspend.target" ];
-  #  path        = [ pkgs.bash pkgs.coreutils ];
-  #  serviceConfig.Type = "oneshot";
-  #  serviceConfig.ExecStart = "${./disable-nvme-d3cold.sh}";
-  #  serviceConfig.TimeoutSec = 0;
-  #  wantedBy = [ "multi-user.target" "suspend.target" ];
-  #};
+  systemd.services.disable-nvme-d3cold = {
+    description = "Disables d3cold on the NVME controller";
+    before      = [ "suspend.target" ];
+    path        = [ pkgs.bash pkgs.coreutils ];
+    serviceConfig.Type = "oneshot";
+    serviceConfig.ExecStart = "${./disable-nvme-d3cold.sh}";
+    serviceConfig.TimeoutSec = 0;
+    wantedBy = [ "multi-user.target" "suspend.target" ];
+  };
 }
